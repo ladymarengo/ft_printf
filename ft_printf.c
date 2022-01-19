@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:02:20 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/19 15:18:00 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:17:49 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	print_argument(char **format, va_list args)
 	parse_width(format, tags);
 	parse_precision(format, tags);
 	parse_length(format, tags);
+	print_specifier(format, tags, args);
 }
 
 int	ft_printf(const char *format, ...)
