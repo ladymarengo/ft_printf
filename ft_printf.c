@@ -6,11 +6,18 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:02:20 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/19 16:17:49 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:24:02 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	free_tags(t_tags *tags)
+{
+	if (ft_strlen(tags->length) > 0)
+		free(tags->length);
+	free(tags);
+}
 
 void	initialize_tags_to_zero(t_tags *tags)
 {
@@ -30,6 +37,8 @@ void	print_argument(char **format, va_list args)
 	t_tags	*tags;
 	
 	tags = malloc(sizeof(t_tags));
+	if (!tags)
+		exit(-1);
 	initialize_tags_to_zero(tags);
 	(*format)++;
 	parse_flags(format, tags);
@@ -37,6 +46,7 @@ void	print_argument(char **format, va_list args)
 	parse_precision(format, tags);
 	parse_length(format, tags);
 	print_specifier(format, tags, args);
+	free_tags(tags);
 }
 
 int	ft_printf(const char *format, ...)

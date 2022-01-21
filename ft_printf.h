@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:24:39 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/19 16:17:28 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:27:10 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,17 @@ typedef struct s_tags
 typedef struct s_spec_to_func
 {
 	char	specifier;
-	void	(*function)(char **format, t_tags *tags, va_list args);
+	void	(*function)(t_tags *tags, va_list args);
 } t_spec_to_func;
 
 int		ft_printf(const char *format, ...);
+void	free_tags(t_tags *tags);
 void	parse_flags(char **format, t_tags *tags);
 void	parse_width(char **format, t_tags *tags);
 void	parse_precision(char **format, t_tags *tags);
 void	parse_length(char **format, t_tags *tags);
 void	print_specifier(char **format, t_tags *tags, va_list args);
+void	print_left_or_right(char *str, t_tags *tags);
+void	print_c(t_tags *tags, va_list args);
 
 #endif

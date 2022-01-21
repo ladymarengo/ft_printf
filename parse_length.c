@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:26:17 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/19 16:25:07 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:19:01 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,25 @@
 
 void	parse_length(char **format, t_tags *tags)
 {
-	char	possible_length[5][3] = {"hh", "h", "ll", "l", 0};
-	int i;
+	size_t	i;
 
-	i = 0;
-	while (i < 4)
+	if (ft_strncmp(*format, "hh", 2) == 0)
+		tags->length = ft_strdup("hh");
+	else if (ft_strncmp(*format, "h", 1) == 0)
+		tags->length = ft_strdup("h");
+	else if (ft_strncmp(*format, "ll", 2) == 0)
+		tags->length = ft_strdup("ll");
+	else if (ft_strncmp(*format, "l", 1) == 0)
+		tags->length = ft_strdup("l");
+	if (!(tags->length))
 	{
-		if (ft_strncmp(*format, possible_length[i], ft_strlen(possible_length[i])) != 0)
-		{
-			tags->length = ft_strdup(possible_length[i]);
-			i = 0;
-			while (i < ft_strlen(tags->length))
-			{
-				(*format)++;
-				i++;
-			}
-			return ;
-		}
+		free_tags(tags);
+		exit(-1);
+	}
+	i = 0;
+	while (i < ft_strlen(tags->length))
+	{
+		(*format)++;
 		i++;
 	}
 }
