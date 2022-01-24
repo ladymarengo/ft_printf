@@ -3,6 +3,6 @@
 int main()
 {
 	ft_printf("Hello world%%\n");
-	ft_printf("|%05c|\n", 'A');
+	ft_printf("|%s|\n", 0);
 	return (0);
 }

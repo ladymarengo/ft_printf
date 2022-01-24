@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:35:14 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:08:29 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:59:42 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,24 @@ void	fill_space(t_tags *tags, int amount)
 	}
 }
 
-void	print_left_or_right(char *str, t_tags *tags)
+void	print_left_or_right(char *str, t_tags *tags, int *chars)
 {
 	size_t	len;
+	int		blank;
 
 	len = ft_strlen(str);
+	blank = tags->width - (int) len;
 	if (tags->minus == 1)
 	{
 		ft_putstr(str);
-		fill_space(tags, tags->width - (int) len);
+		fill_space(tags, blank);
 	}
 	else
 	{
-		fill_space(tags, tags->width - (int) len);
+		fill_space(tags, blank);
 		ft_putstr(str);
 	}
+	*chars =+ len;
+	if (blank > 0)
+		*chars =+ blank;
 }

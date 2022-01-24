@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:02:20 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:24:02 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:56:32 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	initialize_tags_to_zero(t_tags *tags)
 	tags->specifier = 0;
 }
 
-void	print_argument(char **format, va_list args)
+void	print_argument(char **format, va_list args, int *chars)
 {
 	t_tags	*tags;
 	
@@ -45,7 +45,7 @@ void	print_argument(char **format, va_list args)
 	parse_width(format, tags);
 	parse_precision(format, tags);
 	parse_length(format, tags);
-	print_specifier(format, tags, args);
+	print_specifier(format, tags, args, chars);
 	free_tags(tags);
 }
 
@@ -61,7 +61,7 @@ int	ft_printf(const char *format, ...)
 	while (*f_pointer)
 	{
 		if (*f_pointer == '%' && *(f_pointer + 1) != '%')
-			print_argument(&f_pointer, args);
+			print_argument(&f_pointer, args, &chars);
 		else
 		{
 			if (*f_pointer == '%' && *(f_pointer + 1) == '%')

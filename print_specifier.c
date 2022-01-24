@@ -6,18 +6,20 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:19:49 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:26:48 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:56:42 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_specifier(char **format, t_tags *tags, va_list args)
+void	print_specifier(char **format, t_tags *tags, va_list args, int *chars)
 {
-	t_spec_to_func	spec_table[] = {{'c', print_c}};
-
 	tags->specifier = **format;
 	(*format)++;
-	if (tags->specifier == spec_table[0].specifier)
-		spec_table[0].function(tags, args);
+	if (tags->specifier == 'c')
+		print_c(tags, args);
+	else if (tags->specifier == 's')
+		print_s(tags, args);
+	else if (tags->specifier == 'p')
+		print_p(tags, args);
 }
