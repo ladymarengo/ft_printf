@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_specifier.c                                  :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 15:19:49 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 14:17:09 by nsamoilo         ###   ########.fr       */
+/*   Created: 2021/11/04 14:23:04 by nsamoilo          #+#    #+#             */
+/*   Updated: 2022/01/26 14:11:23 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_specifier(char **format, t_tags *tags, va_list args, int *chars)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	tags->specifier = **format;
-	(*format)++;
-	if (tags->specifier == 'c')
-		print_c(tags, args, chars);
-	else if (tags->specifier == 's')
-		print_s(tags, args, chars);
-	else if (tags->specifier == 'p')
-		print_p(tags, args, chars);
-	else if (tags->specifier == 'd' || tags->specifier == 'i')
-		print_di(tags, args, chars);
+	while ((*s1 || *s2) && n > 0)
+	{
+		if ((unsigned char) *s1 != (unsigned char) *s2)
+			return ((unsigned char) *s1 - (unsigned char) *s2);
+		s1++;
+		s2++;
+		n--;
+	}
+	return (0);
 }

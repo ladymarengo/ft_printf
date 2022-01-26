@@ -1,57 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 11:04:36 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 14:13:36 by nsamoilo         ###   ########.fr       */
+/*   Created: 2021/11/01 12:38:46 by nsamoilo          #+#    #+#             */
+/*   Updated: 2022/01/26 13:55:20 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	base_char(unsigned n)
-{
-	char	*chars;
-	char	c;
-	
-	chars = ft_strdup("0123456789abcdef");
-	c = chars[n];
-	free(chars);
-	return (c);
-}
-
-int	count_digits(uintmax_t ln, unsigned int base)
+static	int	count_digits(intmax_t ln)
 {
 	int	digits;
 
 	digits = 1;
-	while (ln >= base)
+	if (ln < 0)
 	{
 		digits++;
-		ln = ln / base;
+		ln = -ln;
+	}
+	while (ln >= 10)
+	{
+		digits++;
+		ln = ln / 10;
 	}
 	return (digits);
 }
 
-char	*ft_itoa_base(uintmax_t ln, unsigned int base)
+char	*ft_itoa(intmax_t n)
 {
 	char	*str;
 	int		i;
 
-	i = count_digits(ln, base);
+	i = count_digits(n);
 	str = (char *)malloc(sizeof(char) * (i + 1));
 	if (str == NULL)
 		return (NULL);
 	str[i] = '\0';
-	while (ln >= base)
-	{	
-		str[i - 1] = base_char((ln % base));
-		i--;
-		ln = ln / base;
+	if (n < 0)
+	{
+		str[0] = '-';
+		n = -n;
 	}
-	str[i - 1] = base_char((ln % base));
+	while (n >= 10)
+	{	
+		str[i - 1] = '0' + (n % 10);
+		i--;
+		n = n / 10;
+	}
+	str[i - 1] = '0' + n;
 	return (str);
 }

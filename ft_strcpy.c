@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_specifier.c                                  :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 15:19:49 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 14:17:09 by nsamoilo         ###   ########.fr       */
+/*   Created: 2021/11/04 11:25:56 by nsamoilo          #+#    #+#             */
+/*   Updated: 2022/01/26 14:14:20 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_specifier(char **format, t_tags *tags, va_list args, int *chars)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	tags->specifier = **format;
-	(*format)++;
-	if (tags->specifier == 'c')
-		print_c(tags, args, chars);
-	else if (tags->specifier == 's')
-		print_s(tags, args, chars);
-	else if (tags->specifier == 'p')
-		print_p(tags, args, chars);
-	else if (tags->specifier == 'd' || tags->specifier == 'i')
-		print_di(tags, args, chars);
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = src[i];
+	return (dst);
 }
