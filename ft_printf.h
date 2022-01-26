@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:24:39 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 16:24:48 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:11:04 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	print_c(t_tags *tags, va_list args, int *chars);
 void	print_s(t_tags *tags, va_list args, int *chars);
 void	print_p(t_tags *tags, va_list args, int *chars);
 void	print_di(t_tags *tags, va_list args, int *chars);
+void	print_oux(t_tags *tags, va_list args, int *chars);
 char	*ft_itoa(intmax_t n);
 int		ft_atoi(char const *str);
 char	*ft_itoa_base(uintmax_t ln, unsigned int base);
@@ -67,5 +68,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strncpy(char *dst, const char *src, size_t len);
+int		ft_tolower(int c);
+void	ft_str_toupper(char	*str);
 
 #endif

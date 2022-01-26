@@ -3,9 +3,9 @@
 
 int main()
 {
-	// int i = 1;
+	unsigned int i = 42;
 	ft_printf("Hello world%%\n");
-	ft_printf("|%+s|\n", "hello");
-	printf("|%+s|\n", "hello");
+	ft_printf("|%#-5X|\n", i);
+	printf("|%#-5X|\n", i);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:52:11 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 16:13:00 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:06:54 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	add_sign(t_tags *tags, char **str, intmax_t number)
 	}
 }
 
-void	handle_precision(t_tags *tags, char **str)
+void	handle_i_precision(t_tags *tags, char **str, intmax_t number)
 {
 	int		add;
 	char	*add_str;
@@ -44,6 +44,11 @@ void	handle_precision(t_tags *tags, char **str)
 			free(*str);
 			free(add_str);
 			*str = temp;
+		}
+		if (tags->precision == 0 && number == 0)
+		{
+			free(*str);
+			*str = ft_strdup("");
 		}
 	}
 }
@@ -64,7 +69,7 @@ void	print_di(t_tags *tags, va_list args, int *chars)
 	else
 		number = (int)va_arg(args, int);
 	str = ft_itoa(number);
-	handle_precision(tags, &str);
+	handle_i_precision(tags, &str, number);
 	add_sign(tags, &str, number);
 	print_left_or_right(str, tags, chars);
 	free(str);
