@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:34:27 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/24 10:49:17 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:26:18 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,20 @@ void	print_c(t_tags *tags, va_list args, int *chars)
 void	print_s(t_tags *tags, va_list args, int *chars)
 {
 	char	*s;
+	char	*temp;
 	
-	s = (char *)va_arg(args, char *);
+	s = ft_strdup((char *)va_arg(args, char *));
+	if (tags->precision >= 0)
+	{
+		temp = ft_strsub(s, 0, tags->precision);
+		free(s);
+		s = temp;
+	}
 	if (!s)
 		print_left_or_right("(null)", tags, chars);
 	else
 		print_left_or_right(s, tags, chars);
+	free(s);
 }
 
 void	print_p(t_tags *tags, va_list args, int *chars)

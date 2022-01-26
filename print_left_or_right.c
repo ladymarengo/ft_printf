@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:35:14 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:59:42 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:17:18 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	fill_space(t_tags *tags, int amount)
 	
 	fill = ' ';
 	if (tags->zero == 1 && tags->minus == 0 && tags->specifier != 'c'
-		&& tags->specifier != 's' && tags->specifier != 'p')
+		&& tags->specifier != 's' && tags->specifier != 'p' && tags->precision == -1)
 		fill = '0';
 	while (amount > 0)
 	{

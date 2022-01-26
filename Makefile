@@ -6,7 +6,7 @@
 #    By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:28:06 by nsamoilo          #+#    #+#              #
-#    Updated: 2022/01/26 14:15:40 by nsamoilo         ###   ########.fr        #
+#    Updated: 2022/01/26 16:24:52 by nsamoilo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_FUNCTIONS = ft_putchar ft_putchar_fd ft_putstr ft_putstr_fd ft_putendl \
 FT_PRINTF_FUNCTIONS = ft_printf parse_flags parse_length parse_precision parse_width \
 			print_specifier print_left_or_right print_csp ft_itoa_base ft_atoi ft_itoa \
 			ft_putchar ft_putstr ft_strcmp ft_strncmp ft_strdup ft_strlen ft_strnew \
-			print_di ft_isdigit ft_strcpy
+			print_di ft_isdigit ft_strcpy ft_memset ft_strjoin ft_strsub ft_strncpy
 LIBFT_FILES = $(patsubst %, libft/%.c, $(LIBFT_FUNCTIONS))
 LIBFT_OBJECTS = $(patsubst %, %.o, $(LIBFT_FUNCTIONS))
 FT_PRINTF_FILES = $(patsubst %, %.c, $(FT_PRINTF_FUNCTIONS))
@@ -49,5 +49,11 @@ re: fclean all
 test: re
 	@gcc main.c libftprintf.a
 	@./a.out
+	@rm a.out
+	@make fclean
+	
+val: re
+	@gcc main.c libftprintf.a
+	@valgrind --leak-check=yes ./a.out
 	@rm a.out
 	@make fclean

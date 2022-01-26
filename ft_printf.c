@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:02:20 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:56:32 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:49:41 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	initialize_tags_to_zero(t_tags *tags)
 	tags->plus = 0;
 	tags->space = 0;
 	tags->width = 0;
-	tags->precision = 0;
+	tags->precision = -1;
 	tags->length = "";
 	tags->specifier = 0;
 }
@@ -60,12 +60,10 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (*f_pointer)
 	{
-		if (*f_pointer == '%' && *(f_pointer + 1) != '%')
+		if (*f_pointer == '%')
 			print_argument(&f_pointer, args, &chars);
 		else
 		{
-			if (*f_pointer == '%' && *(f_pointer + 1) == '%')
-				f_pointer++;
 			ft_putchar(*f_pointer);
 			chars++;
 			f_pointer++;

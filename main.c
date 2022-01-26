@@ -3,9 +3,9 @@
 
 int main()
 {
-	short int i = 10000;
+	// int i = 1;
 	ft_printf("Hello world%%\n");
-	ft_printf("|%hhd|\n", i);
-	printf("|%hhd|\n", i);
+	ft_printf("|%+s|\n", "hello");
+	printf("|%+s|\n", "hello");
 	return (0);
 }

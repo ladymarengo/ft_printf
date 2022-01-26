@@ -6,11 +6,47 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:52:11 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 14:17:57 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:13:00 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	add_sign(t_tags *tags, char **str, intmax_t number)
+{
+	char	*temp;
+
+	if (number >= 0 && (tags->plus == 1 || tags->space == 1))
+	{
+		if (tags->plus == 1)
+			temp = ft_strjoin("+", *str);
+		else if (tags->space == 1)
+			temp = ft_strjoin(" ", *str);
+		free(*str);
+		*str = temp;
+	}
+}
+
+void	handle_precision(t_tags *tags, char **str)
+{
+	int		add;
+	char	*add_str;
+	char	*temp;
+
+	if (tags->precision >= 0)
+	{
+		add = tags->precision - ft_strlen(*str);
+		if (add > 0)
+		{
+			add_str = ft_strnew(add);
+			ft_memset(add_str, '0', add);
+			temp = ft_strjoin(add_str, *str);
+			free(*str);
+			free(add_str);
+			*str = temp;
+		}
+	}
+}
 
 void	print_di(t_tags *tags, va_list args, int *chars)
 {
@@ -28,6 +64,8 @@ void	print_di(t_tags *tags, va_list args, int *chars)
 	else
 		number = (int)va_arg(args, int);
 	str = ft_itoa(number);
+	handle_precision(tags, &str);
+	add_sign(tags, &str, number);
 	print_left_or_right(str, tags, chars);
 	free(str);
 }

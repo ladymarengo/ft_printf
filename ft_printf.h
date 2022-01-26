@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:24:39 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 14:14:39 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:24:48 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,9 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnew(size_t size);
 char	*ft_strcpy(char *dst, const char *src);
 int		ft_isdigit(int c);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	*ft_memset(void *b, int c, size_t len);
+char	*ft_strsub(char const *s, unsigned int start, size_t len);
+char	*ft_strncpy(char *dst, const char *src, size_t len);
 
 #endif
