@@ -5,7 +5,7 @@ int main()
 {
 	unsigned int i = 42;
 	ft_printf("Hello world%%\n");
-	ft_printf("|%#-5X|\n", i);
-	printf("|%#-5X|\n", i);
+	ft_printf("|%#08x|\n", 42);
+	printf("|%#08x|\n", 42);
 	return (0);
 }

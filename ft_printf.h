@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:24:39 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 18:11:04 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:48:26 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	parse_width(char **format, t_tags *tags);
 void	parse_precision(char **format, t_tags *tags);
 void	parse_length(char **format, t_tags *tags);
 void	print_specifier(char **format, t_tags *tags, va_list args, int *chars);
-void	print_left_or_right(char *str, t_tags *tags, int *chars);
+void	print_left_or_right(char **str, t_tags *tags, int *chars);
 void	print_c(t_tags *tags, va_list args, int *chars);
 void	print_s(t_tags *tags, va_list args, int *chars);
 void	print_p(t_tags *tags, va_list args, int *chars);

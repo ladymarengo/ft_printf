@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:52:11 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 18:06:54 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:48:46 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ void	print_di(t_tags *tags, va_list args, int *chars)
 	str = ft_itoa(number);
 	handle_i_precision(tags, &str, number);
 	add_sign(tags, &str, number);
-	print_left_or_right(str, tags, chars);
+	print_left_or_right(&str, tags, chars);
 	free(str);
 }
