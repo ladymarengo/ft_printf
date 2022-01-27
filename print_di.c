@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:52:11 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 18:48:46 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:53:06 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@ void	add_sign(t_tags *tags, char **str, intmax_t number)
 {
 	char	*temp;
 
-	if (number >= 0 && (tags->plus == 1 || tags->space == 1))
+	if (number < 0)
+	{
+		temp = ft_strjoin("-", *str);
+		free(*str);
+		*str = temp;
+	}
+	else if (number >= 0 && (tags->plus == 1 || tags->space == 1))
 	{
 		if (tags->plus == 1)
 			temp = ft_strjoin("+", *str);
@@ -68,7 +74,7 @@ void	print_di(t_tags *tags, va_list args, int *chars)
 		number = (long)va_arg(args, long);
 	else
 		number = (int)va_arg(args, int);
-	str = ft_itoa(number);
+	str = ft_itoa_without_sign(number);
 	handle_i_precision(tags, &str, number);
 	add_sign(tags, &str, number);
 	print_left_or_right(&str, tags, chars);

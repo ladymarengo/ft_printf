@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:24:39 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 18:48:26 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:51:09 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_s(t_tags *tags, va_list args, int *chars);
 void	print_p(t_tags *tags, va_list args, int *chars);
 void	print_di(t_tags *tags, va_list args, int *chars);
 void	print_oux(t_tags *tags, va_list args, int *chars);
-char	*ft_itoa(intmax_t n);
+char	*ft_itoa_without_sign(intmax_t n);
 int		ft_atoi(char const *str);
 char	*ft_itoa_base(uintmax_t ln, unsigned int base);
 void	ft_putchar(char c);

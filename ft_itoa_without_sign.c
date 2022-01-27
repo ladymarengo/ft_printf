@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_without_sign.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/01 12:38:46 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 13:55:20 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 12:51:39 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,12 @@ static	int	count_digits(intmax_t ln)
 	int	digits;
 
 	digits = 1;
-	if (ln < 0)
-	{
+	while ((ln = ln / 10))
 		digits++;
-		ln = -ln;
-	}
-	while (ln >= 10)
-	{
-		digits++;
-		ln = ln / 10;
-	}
 	return (digits);
 }
 
-char	*ft_itoa(intmax_t n)
+char	*ft_itoa_without_sign(intmax_t n)
 {
 	char	*str;
 	int		i;
@@ -42,13 +34,16 @@ char	*ft_itoa(intmax_t n)
 	str[i] = '\0';
 	if (n < 0)
 	{
-		str[0] = '-';
+		if (n == INT64_MIN)
+		{
+			str[0] = '9';
+			n = -223372036854775808;
+		}
 		n = -n;
 	}
 	while (n >= 10)
 	{	
-		str[i - 1] = '0' + (n % 10);
-		i--;
+		str[i-- - 1] = '0' + (n % 10);
 		n = n / 10;
 	}
 	str[i - 1] = '0' + n;
