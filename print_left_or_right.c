@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:35:14 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/27 13:04:57 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:36:52 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ void	subtract_format(t_tags *tags, int *add, char *str)
 {
 	if (tags->specifier == 'o' && ft_strcmp(str, "0") != 0)
 		*add -= 1;
-	else if (ft_tolower(tags->specifier) == 'x' && (ft_strcmp(str, "0") != 0 && ft_strcmp(str, "") != 0))
+	else if ((ft_tolower(tags->specifier) == 'x' && (ft_strcmp(str, "0") != 0 && ft_strcmp(str, "") != 0)) || tags->specifier == 'p')
 		*add -= 2;
 }
 
 void	add_format(t_tags *tags, char **str, int *chars)
 {
-	if (tags->hash == 1)
+	if (tags->hash == 1 || tags->specifier == 'p')
 	{
 		if (tags->specifier == 'o' && ft_strcmp(*str, "0") != 0)
 		{
 			ft_putstr("0");
 			*chars += 1;
 		}
-		else if (tags->specifier == 'x' && (ft_strcmp(*str, "0") != 0 && ft_strcmp(*str, "") != 0))
+		else if ((tags->specifier == 'x' || tags->specifier == 'p') && (ft_strcmp(*str, "0") != 0 && ft_strcmp(*str, "") != 0))
 		{
 			ft_putstr("0x");
 			*chars += 2;
@@ -48,7 +48,7 @@ void	fill_space(t_tags *tags, int amount)
 	
 	fill = ' ';
 	if (tags->zero == 1 && tags->minus == 0 && tags->specifier != 'c'
-		&& tags->specifier != 's' && tags->specifier != 'p' && tags->precision == -1)
+		&& tags->specifier != 's' && tags->precision == -1)
 		fill = '0';
 	while (amount > 0)
 	{
@@ -104,7 +104,7 @@ void	print_left_or_right(char **str, t_tags *tags, int *chars)
 	blank = tags->width - (int) ft_strlen(*str);
 	if (tags->specifier == 'c')
 		blank = tags->width - 1;
-	if (tags->hash == 1)
+	if (tags->hash == 1 || tags->specifier == 'p')
 		subtract_format(tags, &blank, *str);
 	if (tags->minus == 1)
 		print_left(str, tags, chars, blank);

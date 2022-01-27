@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_oux.c                                        :+:      :+:    :+:   */
+/*   print_poux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 17:39:55 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 18:48:12 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:40:16 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	handle_u_precision(t_tags *tags, char **str, uintmax_t number)
 	}
 }
 
-void	print_oux(t_tags *tags, va_list args, int *chars)
+void	print_poux(t_tags *tags, va_list args, int *chars)
 {
 	uintmax_t	number;
 	char		*str;
@@ -47,7 +47,7 @@ void	print_oux(t_tags *tags, va_list args, int *chars)
 		number = (unsigned char)va_arg(args, unsigned int);
 	else if (ft_strcmp(tags->length, "h") == 0)
 		number = (unsigned short)va_arg(args, unsigned int);
-	else if (ft_strcmp(tags->length, "ll") == 0)
+	else if (ft_strcmp(tags->length, "ll") == 0 || tags->specifier == 'p')
 		number = (unsigned long long)va_arg(args, unsigned long long);
 	else if (ft_strcmp(tags->length, "l") == 0)
 		number = (unsigned long)va_arg(args, unsigned long);
@@ -57,7 +57,7 @@ void	print_oux(t_tags *tags, va_list args, int *chars)
 		str = ft_itoa_base(number, 10);
 	else if (tags->specifier == 'o')
 		str = ft_itoa_base(number, 8);
-	else if (ft_tolower(tags->specifier) == 'x')
+	else if (ft_tolower(tags->specifier) == 'x' || tags->specifier == 'p')
 		str = ft_itoa_base(number, 16);
 	if (tags->specifier == 'X')
 		ft_str_toupper(str);

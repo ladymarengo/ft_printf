@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_csp.c                                        :+:      :+:    :+:   */
+/*   print_cs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:34:27 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 19:15:27 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:40:24 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,3 @@ void	print_s(t_tags *tags, va_list args, int *chars)
 	print_left_or_right(&s, tags, chars);
 	free(s);
 }
-
-// void	print_p(t_tags *tags, va_list args, int *chars)
-// {
-// 	// Work In Progress
-// 	print_left_or_right(&((char *)va_arg(args, char *), tags, chars));
-// }
