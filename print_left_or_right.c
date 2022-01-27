@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:35:14 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/27 12:56:36 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:04:57 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ void	fill_space(t_tags *tags, int amount)
 void	print_left(char **str, t_tags *tags, int *chars, int blank)
 {
 	add_format(tags, str, chars);
-	ft_putstr(*str);
+	if (tags->specifier == 'c')
+		ft_putchar(**str);
+	else
+		ft_putstr(*str);
 	fill_space(tags, blank);
 	*chars += ft_strlen(*str);
 	if (blank > 0)
@@ -83,10 +86,15 @@ void	print_right(char **str, t_tags *tags, int *chars, int blank)
 	fill_space(tags, blank);
 	if (tags->zero == 0)
 		add_format(tags, &copy, chars);
-	ft_putstr(copy);
+	if (tags->specifier == 'c')
+		ft_putchar(**str);
+	else
+		ft_putstr(copy);
 	*chars += ft_strlen(copy);
 	if (blank > 0)
 		*chars += blank;
+	if (tags->specifier == 'c' && ft_strlen(copy) == 0)
+		*chars += 1;
 }
 
 void	print_left_or_right(char **str, t_tags *tags, int *chars)
@@ -94,6 +102,8 @@ void	print_left_or_right(char **str, t_tags *tags, int *chars)
 	int		blank;
 
 	blank = tags->width - (int) ft_strlen(*str);
+	if (tags->specifier == 'c')
+		blank = tags->width - 1;
 	if (tags->hash == 1)
 		subtract_format(tags, &blank, *str);
 	if (tags->minus == 1)
