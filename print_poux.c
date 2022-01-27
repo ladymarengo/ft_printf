@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 17:39:55 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/27 13:40:16 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:54:52 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	handle_u_precision(t_tags *tags, char **str, uintmax_t number)
 	char	*add_str;
 	char	*temp;
 
-	if (tags->precision >= 0)
+	if (tags->precision >= 0 && tags->specifier != 'p')
 	{
 		add = tags->precision - ft_strlen(*str);
 		if (add > 0)
@@ -57,6 +57,8 @@ void	print_poux(t_tags *tags, va_list args, int *chars)
 		str = ft_itoa_base(number, 10);
 	else if (tags->specifier == 'o')
 		str = ft_itoa_base(number, 8);
+	else if (tags->specifier == 'p' && number == 0)
+		str = ft_strdup("(nil)");
 	else if (ft_tolower(tags->specifier) == 'x' || tags->specifier == 'p')
 		str = ft_itoa_base(number, 16);
 	if (tags->specifier == 'X')

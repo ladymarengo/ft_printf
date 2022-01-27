@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:35:14 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/27 13:36:52 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/01/27 13:54:10 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	subtract_format(t_tags *tags, int *add, char *str)
 {
 	if (tags->specifier == 'o' && ft_strcmp(str, "0") != 0)
 		*add -= 1;
-	else if ((ft_tolower(tags->specifier) == 'x' && (ft_strcmp(str, "0") != 0 && ft_strcmp(str, "") != 0)) || tags->specifier == 'p')
+	else if ((ft_tolower(tags->specifier) == 'x' && (ft_strcmp(str, "0") != 0 && ft_strcmp(str, "") != 0)) || (tags->specifier == 'p' && ft_strcmp(str, "(nil)") != 0))
 		*add -= 2;
 }
 
@@ -29,7 +29,7 @@ void	add_format(t_tags *tags, char **str, int *chars)
 			ft_putstr("0");
 			*chars += 1;
 		}
-		else if ((tags->specifier == 'x' || tags->specifier == 'p') && (ft_strcmp(*str, "0") != 0 && ft_strcmp(*str, "") != 0))
+		else if ((tags->specifier == 'x' || (tags->specifier == 'p' && ft_strcmp(*str, "(nil)") != 0)) && (ft_strcmp(*str, "0") != 0 && ft_strcmp(*str, "") != 0))
 		{
 			ft_putstr("0x");
 			*chars += 2;
