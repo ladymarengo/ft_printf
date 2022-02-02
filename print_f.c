@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:19:13 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/02 15:06:39 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:30:40 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	print_f(t_tags *tags, va_list args, int *chars)
 {
+	float	f_number;
 	double d_number;
 	long double ld_number;
 	
@@ -21,8 +22,12 @@ void	print_f(t_tags *tags, va_list args, int *chars)
 	{
 		ld_number = (long double)va_arg(args, long double);
 	}
-	else
+	else if (ft_strcmp(tags->length, "l") == 0)
 	{
 		d_number = (double)va_arg(args, double);
+	}
+	else
+	{
+		f_number = (float)va_arg(args, float);
 	}
 }
