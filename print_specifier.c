@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:19:49 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/27 13:41:23 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/02 17:21:55 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	print_specifier(char **format, t_tags *tags, va_list args, int *chars)
 		print_di(tags, args, chars);
 	else if (tags->specifier == 'o' || tags->specifier == 'u' || ft_tolower(tags->specifier) == 'x' || tags->specifier == 'p')
 		print_poux(tags, args, chars);
+	else if (tags->specifier == 'f')
+		print_f(tags, args, chars);
 	else if (tags->specifier == '%')
 	{
 		ft_putchar('%');
