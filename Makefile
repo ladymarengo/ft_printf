@@ -6,7 +6,7 @@
 #    By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:28:06 by nsamoilo          #+#    #+#              #
-#    Updated: 2022/01/27 13:41:13 by nsamoilo         ###   ########.fr        #
+#    Updated: 2022/02/02 14:19:51 by nsamoilo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FT_PRINTF_FUNCTIONS = ft_printf parse_flags parse_length parse_precision parse_w
 			print_specifier print_left_or_right print_cs ft_itoa_base ft_atoi ft_itoa_without_sign \
 			ft_putchar ft_putstr ft_strcmp ft_strncmp ft_strdup ft_strlen ft_strnew \
 			print_di ft_isdigit ft_strcpy ft_memset ft_strjoin ft_strsub ft_strncpy \
-			ft_tolower ft_str_toupper print_poux
+			ft_tolower ft_str_toupper print_poux print_f
 LIBFT_FILES = $(patsubst %, libft/%.c, $(LIBFT_FUNCTIONS))
 LIBFT_OBJECTS = $(patsubst %, %.o, $(LIBFT_FUNCTIONS))
 FT_PRINTF_FILES = $(patsubst %, %.c, $(FT_PRINTF_FUNCTIONS))

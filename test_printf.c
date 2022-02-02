@@ -4,7 +4,6 @@ char	*ft_itoa_base(int n, int base);
 
 int main()
 {
-	printf("%+.0d\n", 1000);
-	printf("hello\n");
+	printf("{%f}\n{%lf}\n{%Lf}\n", 1444565444646.6465424242242, 1444565444646.6465424242242, 1444565444646.6465424242242l);
 	return (0);
 }

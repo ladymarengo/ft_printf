@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:26:17 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:19:01 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:34:02 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	parse_length(char **format, t_tags *tags)
 		tags->length = ft_strdup("ll");
 	else if (ft_strncmp(*format, "l", 1) == 0)
 		tags->length = ft_strdup("l");
+	else if (ft_strncmp(*format, "L", 1) == 0)
+		tags->length = ft_strdup("L");
 	if (!(tags->length))
 	{
 		free_tags(tags);
