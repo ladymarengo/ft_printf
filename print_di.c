@@ -6,13 +6,13 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:52:11 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/27 12:53:06 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:24:50 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	add_sign(t_tags *tags, char **str, intmax_t number)
+void	add_int_sign(t_tags *tags, char **str, intmax_t number)
 {
 	char	*temp;
 
@@ -76,7 +76,6 @@ void	print_di(t_tags *tags, va_list args, int *chars)
 		number = (int)va_arg(args, int);
 	str = ft_itoa_without_sign(number);
 	handle_i_precision(tags, &str, number);
-	add_sign(tags, &str, number);
+	add_int_sign(tags, &str, number);
 	print_left_or_right(&str, tags, chars);
-	free(str);
 }

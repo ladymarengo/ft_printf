@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:02:20 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/26 15:49:41 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:15:08 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	initialize_tags_to_zero(t_tags *tags)
 void	print_argument(char **format, va_list args, int *chars)
 {
 	t_tags	*tags;
-	
+
 	tags = malloc(sizeof(t_tags));
 	if (!tags)
 		exit(-1);

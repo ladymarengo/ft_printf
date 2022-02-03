@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 17:39:55 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/01/27 13:54:52 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/03 18:24:42 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,4 @@ void	print_poux(t_tags *tags, va_list args, int *chars)
 		ft_str_toupper(str);
 	handle_u_precision(tags, &str, number);
 	print_left_or_right(&str, tags, chars);
-	free(str);
 }
