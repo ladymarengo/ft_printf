@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:19:13 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/03 18:24:47 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/04 19:17:09 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	ftoa(long double n, char **str, int precision)
 	*str = ft_strjoin(int_part, float_part);
 	free(int_part);
 	free(float_part);
-	if (remainder - (long double)(int64_t)remainder >= 0.5
-		&& ((*str)[ft_strlen((*str)) - 1] + 1 >= '5' || precision == 0))
+	if ( (remainder * 10.0 - (double)(int64_t)remainder > 5) || (remainder - (double)(int64_t)remainder >= 0.5
+		&& ((*str)[ft_strlen((*str)) - 1] + 1 >= '5' || precision == 0)))
 		round_up(str, ft_strlen(*str) - 1);
 }
 
@@ -95,8 +95,9 @@ void	print_f(t_tags *tags, va_list args, int *chars)
 	else
 		number = (double)va_arg(args, double);
 	if (tags->precision == -1)
-		tags->precision = 6;
-	ftoa(number, &str, tags->precision);
+		ftoa(number, &str, 6);
+	else
+		ftoa(number, &str, tags->precision);
 	add_float_sign(tags, &str, number);
 	print_left_or_right(&str, tags, chars);
 }

@@ -1,0 +1,1 @@
+#define SOME_PRINTF ft_printf
