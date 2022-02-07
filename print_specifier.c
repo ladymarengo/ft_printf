@@ -6,11 +6,23 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:19:49 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/03 18:21:43 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:01:50 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	no_specifier(char **format, t_tags *tags, int *chars)
+{
+	(*format)--;
+	if (tags->specifier == '\0')
+		*chars = -1;
+	else
+	{
+		ft_putchar('%');
+		*chars += 1;
+	}
+}
 
 void	print_specifier(char **format, t_tags *tags, va_list args, int *chars)
 {
@@ -32,4 +44,6 @@ void	print_specifier(char **format, t_tags *tags, va_list args, int *chars)
 		ft_putchar('%');
 		*chars += 1;
 	}
+	else
+		no_specifier(format, tags, chars);
 }

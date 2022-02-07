@@ -6,22 +6,11 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:35:14 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 10:57:48 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:09:28 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	num_pr(t_tags *tags)
-{
-	if (tags->precision != -1 && (tags->specifier == 'd'
-			|| tags->specifier == 'i' || tags->specifier == 'o'
-			|| tags->specifier == 'u' || tags->specifier == 'x'
-			|| tags->specifier == 'X'))
-		return (1);
-	else
-		return (0);
-}
 
 void	fill_space(t_tags *tags, int amount)
 {
@@ -60,7 +49,7 @@ void	print_right(char **str, t_tags *tags, int *chars, int blank)
 	char	*copy;
 
 	copy = *str;
-	if (tags->zero == 1 && (*copy == '-' || *copy == '+') && num_pr(tags) == 0)
+	if (tags->zero == 1 && is_sign(*copy) && number_with_precision(tags) == 0)
 	{
 		ft_putchar(*copy);
 		copy++;

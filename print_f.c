@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:19:13 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 10:56:45 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:03:53 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ftoa(__float128 n, char **str, int precision)
 		|| (1.0 - remainder == 0 + remainder
 			&& ((*str)[ft_strlen((*str)) - 1] + 1 - '0') % 2 == 0))
 		round_up(str, ft_strlen(*str) - 1);
+	free(temp);
 }
 
 void	print_f(t_tags *tags, va_list args, int *chars)

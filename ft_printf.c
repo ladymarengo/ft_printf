@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:02:20 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/03 18:15:08 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 11:58:42 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	print_argument(char **format, va_list args, int *chars)
 {
 	t_tags	*tags;
 
+	(*format)++;
 	tags = malloc(sizeof(t_tags));
 	if (!tags)
 		exit(-1);
 	initialize_tags_to_zero(tags);
-	(*format)++;
 	parse_flags(format, tags);
 	parse_width(format, tags);
 	parse_precision(format, tags);

@@ -20,6 +20,23 @@ int main()
 	ft_printf("ft|%.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf|\n", 0.15l, 0.25l, 0.35l, 0.45l, 0.55l, 0.65l, 0.75l, 0.85l, 0.95l);
 	printf("  |%.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf %.1Lf|\n\n", 0.15l, 0.25l, 0.35l, 0.45l, 0.55l, 0.65l, 0.75l, 0.85l, 0.95l);
 
+	// __float128 res = 0.1l;
+	// ft_printf("%Lf\n", (long double) res);
+	// printf("%Lf\n\n", (long double) res);
+
+	// ft_printf("%wer\n");
+	printf("|%d|\n", ft_printf("%"));
+	printf("|%d|\n\n", printf("%"));
+
+	ft_printf("{% 03d}\n", 0);
+	printf("{% 03d}\n\n", 0);
+
+	ft_printf("%2.9p\n", 1234);
+	printf("%2.9p\n\n", 1234);
+
+
+	ft_printf("|%.p, %.0p|", 0, 0);
+	printf("|%.p, %.0p|", 0, 0);
 
 	// ft_printf("{%.19f}{%.19lf}{%.19Lf}\n", 1444565444646.6465424242242, 1444565444646.6465424242242, 1444565444646.6465424242242l);
 	// printf("{%.19f}{%.19lf}{%.19Lf}\n\n", 1444565444646.6465424242242, 1444565444646.6465424242242, 1444565444646.6465424242242l);
