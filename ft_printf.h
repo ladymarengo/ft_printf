@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:24:39 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 15:57:12 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 16:09:01 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
-# include <stdio.h>
 # include <inttypes.h>
 # include <unistd.h>
 # include <stdlib.h>

@@ -6,7 +6,7 @@
 #    By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:28:06 by nsamoilo          #+#    #+#              #
-#    Updated: 2022/02/07 12:13:11 by nsamoilo         ###   ########.fr        #
+#    Updated: 2022/02/07 16:13:55 by nsamoilo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,8 @@ fclean: clean
 
 re: fclean all
 
-test: re
-	@gcc main.c libftprintf.a
-	@./a.out
-	@rm a.out
-	@make fclean
+test:
+	@make -C eval_tests/ test
 	
-val: re
-	@gcc main.c libftprintf.a
-	@valgrind --leak-check=yes ./a.out
-	@rm a.out
-	@make fclean
+val:
+	@make -C eval_tests/ val
