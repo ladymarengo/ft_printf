@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:19:13 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 11:03:53 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:51:26 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	add_float_sign(t_tags *tags, char **str, long double number)
 		free(*str);
 		*str = temp;
 	}
+	if (!(*str))
+		error_exit(tags, 0);
 }
 
 void	round_up(char **str, int i)
@@ -51,6 +53,8 @@ __float128	add_float_part(__float128 f, char **float_str, int afterpoint)
 	int		i;
 
 	*float_str = ft_strnew(100);
+	if (!float_str)
+		return (0);
 	i = 0;
 	f = f - (__float128)(long long)f;
 	if (f < 0)
@@ -69,7 +73,7 @@ __float128	add_float_part(__float128 f, char **float_str, int afterpoint)
 	return (f);
 }
 
-void	ftoa(__float128 n, char **str, int precision)
+void	ftoa(t_tags *tags, __float128 n, char **str, int precision)
 {
 	char		*int_part;
 	char		*float_part;
@@ -78,10 +82,14 @@ void	ftoa(__float128 n, char **str, int precision)
 
 	int_part = ft_itoa_without_sign((long long)n);
 	remainder = add_float_part(n, &float_part, precision);
+	if (!int_part || !float_part)
+		error_exit(tags, 2, int_part, float_part);
 	*str = ft_strjoin(int_part, float_part);
 	free(int_part);
 	free(float_part);
 	temp = ft_strdup(*str);
+	if (!(*str) || !temp)
+		error_exit(tags, 2, *str, temp);
 	round_up(&temp, ft_strlen(temp) - 1);
 	if (1.0 - remainder < 0 + remainder
 		|| (1.0 - remainder == 0 + remainder
@@ -100,9 +108,9 @@ void	print_f(t_tags *tags, va_list args, int *chars)
 	else
 		number = (double)va_arg(args, double);
 	if (tags->precision == -1)
-		ftoa(number, &str, 6);
+		ftoa(tags, number, &str, 6);
 	else
-		ftoa(number, &str, tags->precision);
+		ftoa(tags, number, &str, tags->precision);
 	add_float_sign(tags, &str, number);
 	print_left_or_right(&str, tags, chars);
 }

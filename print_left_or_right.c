@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 14:35:14 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 12:09:28 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:57:04 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_right(char **str, t_tags *tags, int *chars, int blank)
 	char	*copy;
 
 	copy = *str;
-	if (tags->zero == 1 && is_sign(*copy) && number_with_precision(tags) == 0)
+	if (tags->zero == 1 && is_sign(tags, *copy) && number_with_precision(tags) == 0)
 	{
 		ft_putchar(*copy);
 		copy++;

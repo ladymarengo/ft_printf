@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:24:39 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 12:09:08 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:58:35 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	print_f(t_tags *tags, va_list args, int *chars);
 void	subtract_format(t_tags *tags, int *add, char *str);
 void	add_format(t_tags *tags, char **str, int *chars);
 int		number_with_precision(t_tags *tags);
-int		is_sign(char c);
+int		is_sign(t_tags *tags, char c);
+void	error_exit(t_tags *tags, int strs, ...);
 
 #endif

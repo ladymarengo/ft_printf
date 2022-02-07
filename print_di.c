@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:52:11 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/03 18:24:50 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:40:56 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	add_int_sign(t_tags *tags, char **str, intmax_t number)
 		free(*str);
 		*str = temp;
 	}
+	if (!(*str))
+		error_exit(tags, 0);
 }
 
 void	handle_i_precision(t_tags *tags, char **str, intmax_t number)
@@ -45,6 +47,8 @@ void	handle_i_precision(t_tags *tags, char **str, intmax_t number)
 		if (add > 0)
 		{
 			add_str = ft_strnew(add);
+			if (!add_str)
+				error_exit(tags, 1, *str);
 			ft_memset(add_str, '0', add);
 			temp = ft_strjoin(add_str, *str);
 			free(*str);
@@ -56,6 +60,8 @@ void	handle_i_precision(t_tags *tags, char **str, intmax_t number)
 			free(*str);
 			*str = ft_strdup("");
 		}
+		if (!(*str))
+			error_exit(tags, 0);
 	}
 }
 
@@ -75,6 +81,8 @@ void	print_di(t_tags *tags, va_list args, int *chars)
 	else
 		number = (int)va_arg(args, int);
 	str = ft_itoa_without_sign(number);
+	if (!str)
+		error_exit(tags, 0);
 	handle_i_precision(tags, &str, number);
 	add_int_sign(tags, &str, number);
 	print_left_or_right(&str, tags, chars);

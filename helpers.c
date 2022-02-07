@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 18:20:08 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 12:09:03 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:58:18 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,28 @@ int	number_with_precision(t_tags *tags)
 		return (0);
 }
 
-int	is_sign(char c)
+int	is_sign(t_tags *tags, char c)
 {
-	if (c == '-' || c == '+' || c == ' ')
+	if (tags->specifier != 'c' && tags->specifier != 's' && (c == '-' || c == '+' || c == ' '))
 		return (1);
 	else
 		return (0);
+}
+
+void	error_exit(t_tags *tags, int strs, ...)
+{
+	va_list	args;
+	char	*temp;
+	
+	va_start(args, strs);
+	while (strs > 0)
+	{
+		temp = va_arg(args, char *);
+		if (temp)
+			free(temp);
+		strs--;
+	}
+	va_end(args);
+	free_tags(tags);
+	exit(-1);
 }
