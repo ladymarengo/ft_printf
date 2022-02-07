@@ -1,26 +1,29 @@
 #include <stdlib.h>
+#include "../libft/libft.h"
+#include <inttypes.h>
+#include <limits.h>
 
-char	**get_double_strings()
+char	**get_format_strings(char	*spec)
 {
-	char	**double_strings;
+	char	**format_strings;
 
-	double_strings = malloc(sizeof (char *) * 30);
-	double_strings[0] = "|%lf|\n";
-	double_strings[1] = "|%.1lf|\n";
-	double_strings[2] = "|%10lf|\n";
-	double_strings[3] = "|%-10lf|\n";
-	double_strings[4] = "|%010lf|\n";
-	double_strings[5] = "|%-010lf|\n";
-	double_strings[6] = "|%#lf|\n";
-	double_strings[7] = "|%#.0lf|\n";
-	double_strings[8] = "|%.0lf|\n";
-	double_strings[9] = "|% 10lf|\n";
-	double_strings[10] = "|%+lf|\n";
-	double_strings[11] = "|%.19lf|\n";
-	double_strings[12] = "|%010.0lf|\n";
-	double_strings[13] = 0;
+	format_strings = malloc(sizeof (char *) * 30);
+	format_strings[0] = ft_strjoin("%", spec);
+	format_strings[1] = ft_strjoin("%.1", spec);
+	format_strings[2] = ft_strjoin("%10", spec);
+	format_strings[3] = ft_strjoin("%-10", spec);
+	format_strings[4] = ft_strjoin("%010", spec);
+	format_strings[5] = ft_strjoin("%-010", spec);
+	format_strings[6] = ft_strjoin("%#", spec);
+	format_strings[7] = ft_strjoin("%#.0", spec);
+	format_strings[8] = ft_strjoin("%.0", spec);
+	format_strings[9] = ft_strjoin("% 10", spec);
+	format_strings[10] = ft_strjoin("%+", spec);
+	format_strings[11] = ft_strjoin("%.19", spec);
+	format_strings[12] = ft_strjoin("%010.0", spec);
+	format_strings[13] = 0;
 
-	return (double_strings);
+	return (format_strings);
 }
 
 double *get_double()
@@ -48,29 +51,6 @@ double *get_double()
 	return (doubles);
 }
 
-char	**get_float_strings()
-{
-	char	**float_strings;
-
-	float_strings = malloc(sizeof (char *) * 30);
-	float_strings[0] = "|%f|\n";
-	float_strings[1] = "|%.1f|\n";
-	float_strings[2] = "|%10f|\n";
-	float_strings[3] = "|%-10f|\n";
-	float_strings[4] = "|%010f|\n";
-	float_strings[5] = "|%-010f|\n";
-	float_strings[6] = "|%#f|\n";
-	float_strings[7] = "|%#.0f|\n";
-	float_strings[8] = "|%.0f|\n";
-	float_strings[9] = "|% 10f|\n";
-	float_strings[10] = "|%+f|\n";
-	float_strings[11] = "|%.19f|\n";
-	float_strings[12] = "|%010.0f|\n";
-	float_strings[13] = 0;
-
-	return (float_strings);
-}
-
 float *get_float()
 {
 	float *floats;
@@ -96,29 +76,6 @@ float *get_float()
 	return (floats);
 }
 
-char	**get_long_double_strings()
-{
-	char	**long_double_strings;
-
-	long_double_strings = malloc(sizeof (char *) * 30);
-	long_double_strings[0] = "|%Lf|\n";
-	long_double_strings[1] = "|%.1Lf|\n";
-	long_double_strings[2] = "|%10Lf|\n";
-	long_double_strings[3] = "|%-10Lf|\n";
-	long_double_strings[4] = "|%010Lf|\n";
-	long_double_strings[5] = "|%-010Lf|\n";
-	long_double_strings[6] = "|%#Lf|\n";
-	long_double_strings[7] = "|%#.0Lf|\n";
-	long_double_strings[8] = "|%.0Lf|\n";
-	long_double_strings[9] = "|% 10Lf|\n";
-	long_double_strings[10] = "|%+Lf|\n";
-	long_double_strings[11] = "|%.19Lf|\n";
-	long_double_strings[12] = "|%010.0Lf|\n";
-	long_double_strings[13] = 0;
-
-	return (long_double_strings);
-}
-
 long double *get_long_double()
 {
 	long double *long_doubles;
@@ -142,4 +99,72 @@ long double *get_long_double()
 	long_doubles[13] = 0;
 
 	return (long_doubles);
+}
+
+char *get_char()
+{
+	char *chars;
+
+	chars = malloc(sizeof (char) * 100);
+	chars[0] = 'a';
+	chars[1] = 'A';
+	chars[2] = '7';
+	chars[3] = ' ';
+	chars[4] = 1;
+	chars[5] = 100;
+	chars[6] = 255;
+	chars[7] = 174;
+	chars[8] = 0;
+
+	return (chars);
+}
+
+char **get_string()
+{
+	char **strings;
+
+	strings = malloc(sizeof (long double) * 100);
+	strings[0] = "hello";
+	strings[1] = "heyeyeyeye!";
+	strings[2] = "  ";
+	strings[3] = " hey hey ";
+	strings[4] = 0;
+
+	return (strings);
+}
+
+intmax_t *get_signed()
+{
+	intmax_t *signeds;
+
+	signeds = malloc(sizeof (intmax_t) * 100);
+	signeds[0] = 1;
+	signeds[1] = 100;
+	signeds[2] = 2147483647;
+	signeds[3] = -2147483648;
+	signeds[4] = -1;
+	signeds[5] = -100;
+	signeds[6] = LLONG_MAX;
+	signeds[7] = LLONG_MIN;
+	signeds[8] = 0;
+
+	return (signeds);
+}
+
+uintmax_t *get_unsigned()
+{
+	uintmax_t *unsigneds;
+
+	unsigneds = malloc(sizeof (uintmax_t) * 100);
+	unsigneds[0] = 1;
+	unsigneds[1] = 100;
+	unsigneds[2] = 2147483647;
+	unsigneds[3] = 2147483648;
+	unsigneds[4] = 12;
+	unsigneds[5] = ULLONG_MAX;
+	unsigneds[6] = 666;
+	unsigneds[7] = 4294967295;
+	unsigneds[8] = 0;
+
+	return (unsigneds);
 }

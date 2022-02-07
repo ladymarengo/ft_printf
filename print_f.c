@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:19:13 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/04 19:17:09 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:56:45 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	round_up(char **str, int i)
 	}
 }
 
-long double	add_float_part(long double f, char **float_str, int afterpoint)
+__float128	add_float_part(__float128 f, char **float_str, int afterpoint)
 {
 	int		i;
 
 	*float_str = ft_strnew(100);
 	i = 0;
-	f = f - (long double)(long long)f;
+	f = f - (__float128)(long long)f;
 	if (f < 0)
 		f = -f;
 	if (afterpoint > 0)
@@ -62,32 +62,36 @@ long double	add_float_part(long double f, char **float_str, int afterpoint)
 	}
 	while (afterpoint-- > 0)
 	{
-		f *= 10.0;
-		(*float_str)[i++] = ((unsigned int)f % 10) + '0';
-		f = f - (unsigned int)f;
+		f *= (__float128) 10.0;
+		(*float_str)[i++] = ((long long)f % 10) + '0';
+		f = f - (long long)f;
 	}
 	return (f);
 }
 
-void	ftoa(long double n, char **str, int precision)
+void	ftoa(__float128 n, char **str, int precision)
 {
 	char		*int_part;
 	char		*float_part;
-	long double	remainder;
+	__float128	remainder;
+	char		*temp;
 
 	int_part = ft_itoa_without_sign((long long)n);
 	remainder = add_float_part(n, &float_part, precision);
 	*str = ft_strjoin(int_part, float_part);
 	free(int_part);
 	free(float_part);
-	if ( (remainder * 10.0 - (double)(int64_t)remainder > 5) || (remainder - (double)(int64_t)remainder >= 0.5
-		&& ((*str)[ft_strlen((*str)) - 1] + 1 >= '5' || precision == 0)))
+	temp = ft_strdup(*str);
+	round_up(&temp, ft_strlen(temp) - 1);
+	if (1.0 - remainder < 0 + remainder
+		|| (1.0 - remainder == 0 + remainder
+			&& ((*str)[ft_strlen((*str)) - 1] + 1 - '0') % 2 == 0))
 		round_up(str, ft_strlen(*str) - 1);
 }
 
 void	print_f(t_tags *tags, va_list args, int *chars)
 {
-	long double	number;
+	__float128	number;
 	char		*str;
 
 	if (ft_strcmp(tags->length, "L") == 0)
