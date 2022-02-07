@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 17:39:55 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/07 11:58:50 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:57:51 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	handle_u_precision(t_tags *tags, char **str, uintmax_t number)
 	char	*add_str;
 	char	*temp;
 
-	if (tags->precision > 0 || (tags->precision == 0 && tags->specifier != 'p'))
+	if ((tags->precision > 0 || (tags->precision == 0
+				&& tags->specifier != 'p'))
+		&& ft_strcmp(*str, "(nil)") != 0)
 	{
 		add = tags->precision - ft_strlen(*str);
 		if (add > 0)

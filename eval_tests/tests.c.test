@@ -21,9 +21,54 @@ char	**get_format_strings(char	*spec)
 	format_strings[10] = ft_strjoin("%+", spec);
 	format_strings[11] = ft_strjoin("%.19", spec);
 	format_strings[12] = ft_strjoin("%010.0", spec);
-	format_strings[13] = 0;
+	format_strings[13] = ft_strjoin("%100", spec);
+	format_strings[14] = ft_strjoin("%- 010", spec);
+	format_strings[15] = ft_strjoin("%10.10", spec);
+	format_strings[16] = ft_strjoin("%+7", spec);
+	format_strings[17] = ft_strjoin("%+-.18", spec);
+	format_strings[18] = ft_strjoin("%- 6", spec);
+	format_strings[19] = ft_strjoin("%+.7", spec);
+	format_strings[20] = ft_strjoin("%.", spec);
+	format_strings[21] = 0;
 
 	return (format_strings);
+}
+
+char	**get_lengths()
+{
+	char	**lengths;
+
+	lengths = malloc(sizeof (char *) * 6);
+	lengths[0] = "";
+	lengths[1] = "h";
+	lengths[2] = "hh";
+	lengths[3] = "l";
+	lengths[4] = "ll";
+	lengths[5] = 0;
+
+	return (lengths);
+}
+
+char	**get_di()
+{
+	char	**di = malloc(sizeof(char *) * 3);
+	di[0] = "d";
+	di[1] = "i";
+	di[2] = 0;
+	
+	return (di);
+}
+
+char	**get_oux()
+{
+	char	**oux = malloc(sizeof(char *) * 5);
+	oux[0] = "o";
+	oux[1] = "u";
+	oux[2] = "x";
+	oux[3] = "X";
+	oux[4] = 0;
+	
+	return (oux);
 }
 
 double *get_double()
@@ -125,7 +170,7 @@ char **get_string()
 
 	strings = malloc(sizeof (long double) * 100);
 	strings[0] = "hello";
-	strings[1] = "heyeyeyeye!";
+	strings[1] = "";
 	strings[2] = "  ";
 	strings[3] = " hey hey ";
 	strings[4] = 0;
