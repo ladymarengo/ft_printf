@@ -17,7 +17,9 @@ void	handle_u_precision(t_tags *tags, char **str, uintmax_t number, int add)
 	char	*add_str;
 	char	*temp;
 
-	if (tags->precision >= 0)
+	if ((tags->precision > 0 || (tags->precision == 0
+				&& tags->specifier != 'p'))
+		&& ft_strcmp(*str, "(nil)") != 0)
 	{
 		add = tags->precision - ft_strlen(*str);
 		if (add > 0)
@@ -48,6 +50,8 @@ char	*create_string(t_tags *tags, uintmax_t number)
 		str = ft_itoa_base(number, 10);
 	else if (tags->specifier == 'o')
 		str = ft_itoa_base(number, 8);
+	else if (tags->specifier == 'p' && number == 0)
+		str = ft_strdup("(nil)");
 	else if (ft_tolower(tags->specifier) == 'x' || tags->specifier == 'p')
 		str = ft_itoa_base(number, 16);
 	if (tags->specifier == 'X')

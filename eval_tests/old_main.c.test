@@ -29,5 +29,8 @@ int	main(void)
 	printf("%.1f %.1f\n", 0.15, 0.85);
 	ft_printf("%.1Lf %.1Lf\n", 0.15l, 0.85l);
 	printf("%.1Lf %.1Lf\n", 0.15l, 0.85l);
+
+	printf("%d\n", ft_printf("%"));
+	printf("%d\n", printf("%"));
 	return (0);
 }

@@ -16,7 +16,6 @@ void	add_float_sign(t_tags *tags, char **str, long double number)
 {
 	char	*temp;
 
-	temp = NULL;
 	if (number < 0)
 	{
 		temp = ft_strjoin("-", *str);
@@ -49,7 +48,7 @@ void	round_up(char **str, int i)
 	}
 }
 
-long double	add_float_part(long double f, char **float_str, int afterpoint)
+__float128	add_float_part(__float128 f, char **float_str, int afterpoint)
 {
 	int		i;
 
@@ -57,7 +56,7 @@ long double	add_float_part(long double f, char **float_str, int afterpoint)
 	if (!float_str)
 		return (0);
 	i = 0;
-	f = f - (long double)(long long)f;
+	f = f - (__float128)(long long)f;
 	if (f < 0)
 		f = -f;
 	if (afterpoint > 0)
@@ -67,18 +66,18 @@ long double	add_float_part(long double f, char **float_str, int afterpoint)
 	}
 	while (afterpoint-- > 0)
 	{
-		f *= (long double) 10.0;
+		f *= (__float128) 10.0;
 		(*float_str)[i++] = ((long long)f % 10) + '0';
 		f = f - (long long)f;
 	}
 	return (f);
 }
 
-void	ftoa(t_tags *tags, long double n, char **str, int precision)
+void	ftoa(t_tags *tags, __float128 n, char **str, int precision)
 {
 	char		*int_part;
 	char		*float_part;
-	long double	remainder;
+	__float128	remainder;
 
 	int_part = ft_itoa_without_sign((long long)n);
 	remainder = add_float_part(n, &float_part, precision);
@@ -95,7 +94,7 @@ void	ftoa(t_tags *tags, long double n, char **str, int precision)
 
 void	print_f(t_tags *tags, va_list args, int *chars)
 {
-	long double	number;
+	__float128	number;
 	char		*str;
 
 	if (ft_strcmp(tags->length, "L") == 0)

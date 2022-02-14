@@ -20,7 +20,7 @@ val:
 	@make -C .. re
 	@mv old_main.c.test old_main.c
 	@gcc -w old_main.c ../libftprintf.a
-	@valgrind --leak-check=yes ./a.out
+	@./a.out
 	@rm a.out
 	@mv old_main.c old_main.c.test
 	@make -C .. fclean
