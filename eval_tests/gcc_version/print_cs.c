@@ -30,7 +30,12 @@ void	print_s(t_tags *tags, va_list args, int *chars)
 
 	s = (char *)va_arg(args, char *);
 	if (s == NULL)
-		s = ft_strdup("(null)");
+	{
+		if (tags->precision == -1 || tags->precision > 5)
+			s = ft_strdup("(null)");
+		else
+			s = ft_strdup("");
+	}
 	else
 		s = ft_strdup(s);
 	if (!s)

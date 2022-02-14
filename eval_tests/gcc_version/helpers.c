@@ -19,7 +19,7 @@ void	subtract_format(t_tags *tags, int *add, char *str)
 		*add -= 1;
 	else if ((ft_tolower(tags->specifier) == 'x'
 			&& (ft_strcmp(str, "0") != 0 && ft_strcmp(str, "") != 0))
-		|| tags->specifier == 'p')
+		|| (tags->specifier == 'p' && ft_strcmp(str, "(nil)") != 0))
 		*add -= 2;
 }
 
@@ -33,8 +33,8 @@ void	add_format(t_tags *tags, char **str, int *chars)
 			*chars += 1;
 		}
 		else if (((tags->specifier == 'x' || tags->specifier == 'X')
-				&& (ft_strcmp(*str, "0") != 0 && ft_strcmp(*str, "") != 0))
-			|| tags->specifier == 'p')
+				|| (tags->specifier == 'p' && ft_strcmp(*str, "(nil)") != 0))
+			&& (ft_strcmp(*str, "0") != 0 && ft_strcmp(*str, "") != 0))
 		{
 			*chars += 2;
 			if (tags->specifier == 'x' || tags->specifier == 'p')

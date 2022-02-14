@@ -12,18 +12,12 @@
 
 #include "ft_printf.h"
 
-void	print_percent(t_tags *tags, int *chars)
-{
-	char	*str;
-
-	str = ft_strdup("%");
-	print_left_or_right(&str, tags, chars);
-}
-
 void	no_specifier(char **format, t_tags *tags, int *chars)
 {
 	(*format)--;
-	if (tags->specifier != '\0')
+	if (tags->specifier == '\0')
+		*chars = -1;
+	else
 	{
 		ft_putchar('%');
 		*chars += 1;
@@ -46,7 +40,10 @@ void	print_specifier(char **format, t_tags *tags, va_list args, int *chars)
 	else if (tags->specifier == 'f')
 		print_f(tags, args, chars);
 	else if (tags->specifier == '%')
-		print_percent(tags, chars);
+	{
+		ft_putchar('%');
+		*chars += 1;
+	}
 	else
 		no_specifier(format, tags, chars);
 }
