@@ -27,5 +27,6 @@ int	main(void)
 
 	printf("%d\n", ft_printf("%"));
 	printf("%d\n", printf("%"));
+	
 	return (0);
 }
