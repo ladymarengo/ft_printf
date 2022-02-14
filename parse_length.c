@@ -6,12 +6,11 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 13:26:17 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/08 11:10:35 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/08 16:23:13 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 void	parse_length(char **format, t_tags *tags)
 {

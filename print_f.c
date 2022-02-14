@@ -6,7 +6,7 @@
 /*   By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 14:19:13 by nsamoilo          #+#    #+#             */
-/*   Updated: 2022/02/08 11:12:44 by nsamoilo         ###   ########.fr       */
+/*   Updated: 2022/02/14 11:10:40 by nsamoilo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	ftoa(t_tags *tags, __float128 n, char **str, int precision)
 	char		*int_part;
 	char		*float_part;
 	__float128	remainder;
-	char		*temp;
 
 	int_part = ft_itoa_without_sign((long long)n);
 	remainder = add_float_part(n, &float_part, precision);
@@ -87,15 +86,10 @@ void	ftoa(t_tags *tags, __float128 n, char **str, int precision)
 	*str = ft_strjoin(int_part, float_part);
 	free(int_part);
 	free(float_part);
-	temp = ft_strdup(*str);
-	if (!(*str) || !temp)
-		error_exit(tags, 2, *str, temp);
-	round_up(&temp, ft_strlen(temp) - 1);
 	if (1.0 - remainder < 0 + remainder
 		|| (1.0 - remainder == 0 + remainder
 			&& ((*str)[ft_strlen((*str)) - 1] + 1 - '0') % 2 == 0))
 		round_up(str, ft_strlen(*str) - 1);
-	free(temp);
 }
 
 void	print_f(t_tags *tags, va_list args, int *chars)
