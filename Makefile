@@ -6,7 +6,7 @@
 #    By: nsamoilo <nsamoilo@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 14:28:06 by nsamoilo          #+#    #+#              #
-#    Updated: 2022/02/08 11:30:22 by nsamoilo         ###   ########.fr        #
+#    Updated: 2022/02/15 10:23:15 by nsamoilo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,9 @@ re: fclean all
 
 test:
 	@make -C eval_tests/ test
+
+gcc:
+	@make -C eval_tests/ gcc
 	
 val:
 	@make -C eval_tests/ val
