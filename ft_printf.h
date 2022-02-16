@@ -33,12 +33,6 @@ typedef struct s_tags
 	char	specifier;
 }	t_tags;
 
-typedef struct s_spec_to_func
-{
-	char	specifier;
-	void	(*function)(t_tags *tags, va_list args);
-}	t_spec_to_func;
-
 int		ft_printf(const char *format, ...);
 void	free_tags(t_tags *tags);
 void	parse_flags(char **format, t_tags *tags);
