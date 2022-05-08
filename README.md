@@ -1,4 +1,5 @@
 # ft_printf
-Implementing printf function in Hive Helsinki.
+Hive Helsinki school project.
+Implementing standard printf function in C language.
 
-Lots of bugs, will fix someday.
+[Here](https://github.com/ladymarengo/tests_ft_printf) are tests for this project.
